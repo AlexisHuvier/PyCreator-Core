@@ -1,8 +1,12 @@
 from setuptools import setup, find_packages
 
+import pycreator_core
+
 setup(
 
     name='PyCreator-Core',
+
+    version=pycreator_core.__version__,
 
     packages=find_packages(),
     author="LavaPower",
