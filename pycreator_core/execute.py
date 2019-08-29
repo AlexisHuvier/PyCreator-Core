@@ -23,14 +23,19 @@ class Interpreter:
 
         if code is None:
             # Case 2
-            return
+            return None
 
         # Case 3
         return self.runcode(code)
 
     def runcode(self, code):
         try:
-            return exec(code, self.locals)
+            fake = FakeStdout()
+            saveout = sys.stdout
+            sys.stdout = fake
+            exec(code, self.locals)
+            sys.stdout = saveout
+            return fake.contenu
         except SystemExit:
             raise
         except:
@@ -71,5 +76,5 @@ def execute_interactive(code):
     return Interpreter().runsource(code)
 
 
-def execute_file(code):
-    return Interpreter().runsource(code, "code.py", "exec")
+def execute_file(code, namefile="code.py"):
+    return Interpreter().runsource(code, namefile, "exec")
