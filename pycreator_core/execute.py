@@ -1,6 +1,8 @@
 import sys
 import traceback
 from codeop import CommandCompiler
+from pycreator_core.utils import FakeStdout
+
 
 __all__ = ["execute_interactive", "execute_file"]
 

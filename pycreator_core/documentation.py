@@ -1,14 +1,8 @@
 import sys
 
+from pycreator_core.utils import FakeStdout
+
 __all__ = ["get_doc", "get_help"]
-
-
-class FakeStdout:
-    def __init__(self):
-        self.contenu = ""
-
-    def write(self, data):
-        self.contenu += data
 
 
 def get_doc(name):

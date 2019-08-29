@@ -23,6 +23,7 @@ NAME
 PACKAGE CONTENTS
     documentation
     execute
+    utils
 
 VERSION
     0.0.1
