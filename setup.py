@@ -28,6 +28,5 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3.7",
         "Intended Audience :: Developers",
-    ],
-    install_requires=[]
+    ]
 )
