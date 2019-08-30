@@ -22,6 +22,7 @@ PACKAGE CONTENTS
     documentation
     execute
     history
+    snippets
     utils
 
 VERSION
