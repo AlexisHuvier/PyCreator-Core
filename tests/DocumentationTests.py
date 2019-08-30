@@ -16,6 +16,7 @@ NAME
     pycreator_core
 
 PACKAGE CONTENTS
+    analyse
     autocompletion
     config
     documentation
