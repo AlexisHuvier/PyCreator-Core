@@ -48,14 +48,11 @@ class Interpreter:
         sys.last_value = value
         sys.last_traceback = tb
         if filename and type is SyntaxError:
-            # Work hard to stuff the correct filename in the exception
             try:
                 msg, (dummy_filename, lineno, offset, line) = value.args
             except ValueError:
-                # Not the format we expect; leave it alone
                 pass
             else:
-                # Stuff in the right filename
                 value = SyntaxError(msg, (filename, lineno, offset, line))
                 sys.last_value = value
         lines = traceback.format_exception_only(type, value)
@@ -76,5 +73,8 @@ def execute_interactive(code):
     return Interpreter().runsource(code)
 
 
-def execute_file(code, namefile="code.py"):
+def execute_file(namefile, code=None):
+    if code is None:
+        with open(namefile, "r") as f:
+            code = f.read()
     return Interpreter().runsource(code, namefile, "exec")
