@@ -33,3 +33,13 @@ FILE
 
 
 """)
+class ConfigTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.config = pycreator_core.Config()
+
+    def test_get_set(self):
+        self.assertEqual(self.config.get("EXISTE PAS", "oui"), "oui")
+        self.assertEqual(self.config.get("last_file", "oui"), "")
+        self.config.set("last_file", "test.py")
+        self.assertEqual(self.config.get("last_file", "oui"), "test.py")
+
