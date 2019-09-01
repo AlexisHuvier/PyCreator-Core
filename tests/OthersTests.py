@@ -7,6 +7,21 @@ class InformationsTests(unittest.TestCase):
         self.assertEqual(pycreator_core.__version__, "0.0.1")
 
 
+class FileSystemTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.filesys = pycreator_core.FileSystem
+
+    def test_save(self):
+        self.filesys.save("files/test.py", "print('oui')")
+        with open("files/test.py", "r") as f:
+            self.assertEqual(f.read(), "print('oui')")
+
+    def test_open(self):
+        with open("files/test.py", "w") as f:
+            f.write("print('oui')")
+        self.assertEqual(self.filesys.open("files/test.py"), "print('oui')")
+
+
 class ConfigTests(unittest.TestCase):
     def setUp(self) -> None:
         self.config = pycreator_core.Config()

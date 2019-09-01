@@ -21,6 +21,7 @@ PACKAGE CONTENTS
     config
     documentation
     execute
+    filesystem
     history
     snippets
     utils
