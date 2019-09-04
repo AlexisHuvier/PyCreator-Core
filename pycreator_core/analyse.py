@@ -12,6 +12,9 @@ class Analyser:
         self.config = config
 
     def update_code(self, code):
-        if self.config.get("doublechar", True):
-            code += double_car.get(code[-1], "")
+        if len(code):
+            if self.config.get("doublechar", True):
+                code = double_car.get(code[-1], "")
+            else:
+                code = ""
         return code

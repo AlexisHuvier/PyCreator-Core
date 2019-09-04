@@ -7,4 +7,4 @@ from pycreator_core.analyse import Analyser
 from pycreator_core.config import Config
 from pycreator_core.filesystem import FileSystem
 
-__version__ = "0.0.1"
+__version__ = "1.0.0"

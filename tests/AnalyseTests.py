@@ -8,7 +8,7 @@ class AnalyseTests(unittest.TestCase):
         self.analyser = pycreator_core.Analyser(self.config)
 
     def test_doublechar(self):
-        self.assertEqual(self.analyser.update_code("Bonjour"), "Bonjour")
-        self.assertEqual(self.analyser.update_code("Bonjour'"), "Bonjour''")
+        self.assertEqual(self.analyser.update_code("Bonjour"), "")
+        self.assertEqual(self.analyser.update_code("Bonjour'"), "'")
         self.config.set("doublechar", False)
-        self.assertEqual(self.analyser.update_code("Bonjour'"), "Bonjour'")
+        self.assertEqual(self.analyser.update_code("Bonjour'"), "")

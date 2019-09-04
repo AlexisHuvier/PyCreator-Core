@@ -27,7 +27,7 @@ PACKAGE CONTENTS
     utils
 
 VERSION
-    0.0.1
+    1.0.0
 
 FILE
     d:\programmation\python\projet\pycreator\pycreator-core\pycreator_core\__init__.py

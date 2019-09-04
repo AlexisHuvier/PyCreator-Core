@@ -1,5 +1,5 @@
 # Changelog
 
-## V 0.0.1 - XX/XX/19
+## V 1.0.0 - XX/XX/19
 
     - Première version
