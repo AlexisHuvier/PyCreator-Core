@@ -41,9 +41,9 @@ class ConfigTests(unittest.TestCase):
 
     def test_get_set(self):
         self.assertEqual(self.config.get("EXISTE PAS", "oui"), "oui")
-        self.assertEqual(self.config.get("last_file", "oui"), "")
-        self.config.set("last_file", "test.py")
-        self.assertEqual(self.config.get("last_file", "oui"), "test.py")
+        self.assertEqual(self.config.get("folder", "oui"), "")
+        self.config.set("folder", "test")
+        self.assertEqual(self.config.get("folder", "oui"), "test")
 
 
 class HistoryTests(unittest.TestCase):
