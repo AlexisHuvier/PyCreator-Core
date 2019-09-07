@@ -19,15 +19,11 @@ class Interpreter:
         try:
             code = self.compile(source, filename, symbol)
         except (OverflowError, SyntaxError, ValueError):
-            # Case 1
-            return self.showsyntaxerror(filename)
-
-        if code is None:
-            # Case 2
-            return None
-
-        # Case 3
-        return self.runcode(code)
+            self.showsyntaxerror(filename)
+        else:
+            if code is None:
+                return
+            self.runcode(code)
 
     def runcode(self, code):
         try:
@@ -36,14 +32,12 @@ class Interpreter:
             sys.stdout = fake
             exec(code, self.locals)
             sys.stdout = saveout
-            return ""
         except SystemExit:
             raise
         except:
-            return self.showtraceback()
+            self.showtraceback()
 
-    @staticmethod
-    def showsyntaxerror(filename=None):
+    def showsyntaxerror(self, filename=None):
         type, value, tb = sys.exc_info()
         sys.last_type = type
         sys.last_value = value
@@ -57,15 +51,14 @@ class Interpreter:
                 value = SyntaxError(msg, (filename, lineno, offset, line))
                 sys.last_value = value
         lines = traceback.format_exception_only(type, value)
-        return ''.join(lines)
+        self.write(''.join(lines))
 
-    @staticmethod
-    def showtraceback():
+    def showtraceback(self):
         sys.last_type, sys.last_value, last_tb = ei = sys.exc_info()
         sys.last_traceback = last_tb
         try:
             lines = traceback.format_exception(ei[0], ei[1], last_tb.tb_next)
-            return ''.join(lines)
+            self.write(''.join(lines))
         finally:
             last_tb = ei = None
 
