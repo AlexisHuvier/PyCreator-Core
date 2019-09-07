@@ -8,10 +8,11 @@ __all__ = ["execute_interactive", "execute_file"]
 
 
 class Interpreter:
-    def __init__(self, locals=None):
+    def __init__(self, write, locals=None):
         if locals is None:
             locals = {"__name__": "__console__", "__doc__": None}
         self.locals = locals
+        self.write = write
         self.compile = CommandCompiler()
 
     def runsource(self, source, filename="<input>", symbol="single"):
@@ -30,12 +31,12 @@ class Interpreter:
 
     def runcode(self, code):
         try:
-            fake = FakeStdout()
+            fake = FakeStdout(self.write)
             saveout = sys.stdout
             sys.stdout = fake
             exec(code, self.locals)
             sys.stdout = saveout
-            return fake.contenu
+            return ""
         except SystemExit:
             raise
         except:
@@ -69,12 +70,12 @@ class Interpreter:
             last_tb = ei = None
 
 
-def execute_interactive(code):
-    return Interpreter().runsource(code)
+def execute_interactive(code, write):
+    return Interpreter(write).runsource(code)
 
 
-def execute_file(namefile, code=None):
+def execute_file(namefile, write, code=None):
     if code is None:
         with open(namefile, "r") as f:
             code = f.read()
-    return Interpreter().runsource(code, namefile, "exec")
+    return Interpreter(write).runsource(code, namefile, "exec")
