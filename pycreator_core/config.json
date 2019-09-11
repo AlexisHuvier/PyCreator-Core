@@ -7,7 +7,7 @@
         },
         "tkinter":
         {
-
+            "theme": "default"
         }
     },
     "folder": "",
