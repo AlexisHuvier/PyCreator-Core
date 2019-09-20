@@ -4,7 +4,7 @@ from codeop import CommandCompiler
 from pycreator_core.utils import FakeStdout
 
 
-__all__ = ["execute_interactive", "execute_file"]
+__all__ = ["Interpreter"]
 
 
 class Interpreter:
@@ -62,13 +62,11 @@ class Interpreter:
         finally:
             last_tb = ei = None
 
+    def execute_interactive(self, code):
+        return self.runsource(code)
 
-def execute_interactive(code, write):
-    return Interpreter(write).runsource(code)
-
-
-def execute_file(namefile, write, code=None):
-    if code is None:
-        with open(namefile, "r") as f:
-            code = f.read()
-    return Interpreter(write).runsource(code, namefile, "exec")
+    def execute_file(self, namefile, code=None):
+        if code is None:
+            with open(namefile, "r") as f:
+                code = f.read()
+        return self.runsource(code, namefile, "exec")

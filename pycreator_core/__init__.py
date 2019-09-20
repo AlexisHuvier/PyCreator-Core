@@ -1,4 +1,4 @@
-from pycreator_core.execute import execute_file, execute_interactive
+from pycreator_core.execute import Interpreter
 from pycreator_core.documentation import get_doc, get_help
 from pycreator_core.autocompletion import get_completion
 from pycreator_core.history import History
